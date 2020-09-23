@@ -35,5 +35,3 @@ SELECT ceiling(AVG(Salary)-AVG(REPLACE(Salary,'0',''))) FROM EMPLOYEES;
 -- Weather Observation Station 2
 select round(sum(lat_n), 2), round(sum(long_w), 2)
 from STATION;
-
---
