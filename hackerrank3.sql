@@ -1,37 +1,57 @@
 -- https://www.hackerrank.com/challenges/revising-aggregations-the-count-function/problem
 -- Aggregation
 
--- Revising Aggregations - The Count Function
-select count(name)
-from city
-where population > 100000;
+SELECT 
+    COUNT(name)
+FROM
+    city
+WHERE
+    population > 100000;
 
 -- Revising Aggregations - The Sum Function
-select  sum(population)
-from city
-where District = 'California';
+SELECT 
+    SUM(population)
+FROM
+    city
+WHERE
+    District = 'California';
  
 -- Revising Aggregations - Averages
- select  avg(population)
-from city
-where District = 'California';
+SELECT 
+    AVG(population)
+FROM
+    city
+WHERE
+    District = 'California';
 
 -- Average Population
- select  round(avg(population))
-from city;
+SELECT 
+    ROUND(AVG(population))
+FROM
+    city;
 
 -- Japan Population
- select  sum(population)
-from city
-where COUNTRYCODE = 'JPN';
+SELECT 
+    SUM(population)
+FROM
+    city
+WHERE
+    COUNTRYCODE = 'JPN';
 
 -- Population Density Difference
-select max(population) - min(population)
-from city;
+SELECT 
+    MAX(population) - MIN(population)
+FROM
+    city;
 
 -- The Blunder ((CEILING())
-SELECT ceiling(AVG(Salary)-AVG(REPLACE(Salary,'0',''))) FROM EMPLOYEES;
+SELECT 
+    CEILING(AVG(Salary) - AVG(REPLACE(Salary, '0', '')))
+FROM
+    EMPLOYEES;
 
 -- Weather Observation Station 2
-select round(sum(lat_n), 2), round(sum(long_w), 2)
-from STATION;
+SELECT 
+    ROUND(SUM(lat_n), 2), ROUND(SUM(long_w), 2)
+FROM
+    STATION;
