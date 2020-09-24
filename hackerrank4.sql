@@ -44,31 +44,46 @@ FROM
 ORDER BY grades.grade DESC , Students.name ASC , Students.Marks ASC;
 
 -- Top Competitors
-select h.hacker_id, h.name
-from submissions s
-inner join challenges c
-on s.challenge_id = c.challenge_id
-inner join difficulty d
-on c.difficulty_level = d.difficulty_level 
-inner join hackers h
-on s.hacker_id = h.hacker_id
-where s.score = d.score and c.difficulty_level = d.difficulty_level
-group by h.hacker_id, h.name
-having count(s.hacker_id) > 1
-order by count(s.hacker_id) desc, s.hacker_id asc
+SELECT 
+    h.hacker_id, h.name
+FROM
+    submissions s
+        INNER JOIN
+    challenges c ON s.challenge_id = c.challenge_id
+        INNER JOIN
+    difficulty d ON c.difficulty_level = d.difficulty_level
+        INNER JOIN
+    hackers h ON s.hacker_id = h.hacker_id
+WHERE
+    s.score = d.score
+        AND c.difficulty_level = d.difficulty_level
+GROUP BY h.hacker_id , h.name
+HAVING COUNT(s.hacker_id) > 1
+ORDER BY COUNT(s.hacker_id) DESC , s.hacker_id ASC;
 
 -- Ollivander's Inventory (https://www.hackerrank.com/challenges/harry-potter-and-wands/problem )
--- not finished select Wands.id, Wands_Property.age, Wands.coins_needed, Wands.power
-from Wands
-join Wands_Property
-on Wands.code = Wands_Property.code
-where Wands_Property.is_evil = 0
-and Wands.coins_needed = (select min(coins_needed) 
-from Wands as w1 
-join Wands_Property as p1 
-on (w1.code = p1.code) 
-where w1.power = Wands.power and p1.age = Wands_Property.age)
-order by 4 desc, Wands_Property.age desc;
+-- not finished 
+SELECT 
+    Wands.id,
+    Wands_Property.age,
+    Wands.coins_needed,
+    Wands.power
+FROM
+    Wands
+        JOIN
+    Wands_Property ON Wands.code = Wands_Property.code
+WHERE
+    Wands_Property.is_evil = 0
+        AND Wands.coins_needed = (SELECT 
+            MIN(coins_needed)
+        FROM
+            Wands AS w1
+                JOIN
+            Wands_Property AS p1 ON (w1.code = p1.code)
+        WHERE
+            w1.power = Wands.power
+                AND p1.age = Wands_Property.age)
+ORDER BY 4 DESC , Wands_Property.age DESC;
 
 -- Challenges (https://www.hackerrank.com/challenges/challenges/problem)
 -- not finished
